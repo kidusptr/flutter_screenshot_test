@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 import 'package:flutter/material.dart';
 import 'package:screenshot/screenshot.dart';
+import 'package:screenshot_test/pages/long_widget.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class ScreenShotPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _ScreenShotPageState extends State<ScreenShotPage> {
               .captureFromLongWidget(InheritedTheme.captureAll(
                   context,
                   Material(
-                    child: WebViewWidget(controller: _webViewController),
+                    child: _buildList(),
                   )));
 
           if (capturedImage != null) {
@@ -61,4 +62,10 @@ class _ScreenShotPageState extends State<ScreenShotPage> {
       },
     );
   }
+}
+
+Widget _buildList() {
+  return Column(
+    children: List.generate(30, (index) => CustomContainer(index: index)),
+  );
 }
