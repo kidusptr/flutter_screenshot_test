@@ -27,12 +27,16 @@ class _ScreenShotPageState extends State<ScreenShotPage> {
           child: const Icon(Icons.screenshot),
           onPressed: () async {
             // Capture the screenshot
-            final capturedImage = await screenshotController
-                .captureFromLongWidget(InheritedTheme.captureAll(
-                    context,
-                    Material(
-                      child: _buildList(),
-                    )));
+            final capturedImage =
+                await screenshotController.captureFromLongWidget(
+                    InheritedTheme.captureAll(
+                      context,
+                      Material(
+                        child: _buildList(),
+                      ),
+                    ),
+                    constraints: BoxConstraints(
+                        maxWidth: MediaQuery.of(context).size.width));
 
             _showCapturedImage(capturedImage);
           },
